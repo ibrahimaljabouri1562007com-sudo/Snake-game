@@ -119,14 +119,14 @@ const CFG = {
   COLS: 20, ROWS: 20,
   START_SPEED: 130, MIN_SPEED: 60, SPEED_STEP: 4,
   gridA: "#121829", gridB: "#151c30",
-  // snake starts orange, turns red once score reaches RED_AT
+  // snake starts black, turns red once score reaches RED_AT
   RED_AT: 3,
-  orange: { head: "#FFB347", body: "#FF8C1A", bodyDeep: "#C96A00", glow: "rgba(255,140,26,0.55)" },
+  black: { head: "#2b2b2b", body: "#111111", bodyDeep: "#000000", glow: "rgba(200,210,230,0.55)" },
   red:   { head: "#FF6B6B", body: "#FF3B3B", bodyDeep: "#C41E1E", glow: "rgba(255,60,60,0.55)" },
   food: "#FF4D6D", foodGlow: "#FF8FA6",
   eye: "#1a1003",
 };
-function snakePalette(){ return score >= CFG.RED_AT ? CFG.red : CFG.orange; }
+function snakePalette(){ return score >= CFG.RED_AT ? CFG.red : CFG.black; }
 const canvas = document.getElementById("game");
 const ctx = canvas.getContext("2d");
 const CELL = canvas.width / CFG.COLS;
@@ -242,7 +242,7 @@ function draw(ts){
     ctx.restore();
   }
 
-  // snake (glowing orange, gradient head->tail)
+  // snake (glowing black, gradient head->tail)
   ctx.save();
   const pal = snakePalette();
   ctx.shadowColor = pal.glow; ctx.shadowBlur = 14;
